@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{% url 'issues:new_bug' %}" class="btn btn-info btn-sm me-md-2">Add New Issue</a>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'todos:add_todo' %}" class="btn btn-info btn-sm">Add New ToDo</a>
+            <span></span>
+        </div>
+        <div class="col-md-3 offset-md-3">
+            <a href="{% url 'settings:settings' %}" class="btn btn-outline-secondary btn-sm">Settings</a>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col-12" id="top">
+            <h4>Top Bugs</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Bug</th>
+                        <th>Priority</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bug in bug_list %}
+                    <tr>
+                        <td>{{bug.name}}</td>
+                        <td>{{bug.priority}}</td>
+                        <td>{{bug.description}}</td>
+                        <td>{{bug.status}}</td>
+                        <td>{{bug.category}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="d-grip gap-2 d-md-block">
+                    <a href="{% url 'issues:issues' %}" class="btn btn-outline-primary btn-sm">See All Issues</a>
+                </div>
+            </div>
+        </div>
+        <span></span>
+        <br><br><br>
+        <div class="col-12" id="bottom">
+            <h4>Top To Do's</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>To DO</th>
+                        <th>priority</th>
+                        <th>description</th>
+                        <th>status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for todo in todo_list %}
+                    <tr>
+                        <td>{{todo.name}}</td>
+                        <td>{{todo.priority}}</td>
+                        <td>{{todo.description}}</td>
+                        <td>{{todo.status}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="row">
+                <a href="{% url 'todos:todo' %}" class="btn btn-outline-primary btn-sm">All To Do's</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

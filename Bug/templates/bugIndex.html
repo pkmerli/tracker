@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h3>Bug-Tracker</h3>
+    <br/>
+    <div class="container-fluid">
+        <div class="d-grip gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'issues:new_bug' %}" class="btn btn-primary btn-sm">Add New Issue</a>
+            <a href="{% url 'settings:settings' %}" class="btn btn-secondary btn-sm">Settings</a>
+        </div>
+        <caption>Current Bugs</caption>
+        <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bug</th>
+                    <th>Priority</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Category</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bug in bugs %}
+                <tr>
+                    <td>{{bug.name}}</td>
+                    <td>{{bug.priority}}</td>
+                    <td>{{bug.description}}</td>
+                    <td>{{bug.status}}</td>
+                    <td>{{bug.category}}</td>
+                    <td>
+                        <a href="{% url 'issues:bug_detail' bug.pk %}" class="btn btn-warning btn-sm">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}

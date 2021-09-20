@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <button class="btn btn-primary btn-sm"><a href="{% url 'todos:todo' %}">Back</a></button>
+    <div class="form-group">
+        {% csrf_token %}
+        <div>
+            <label>Task:</label><br/>
+            <input type="text" name="name" value="{{ td.name }}"><br/>
+        </div>
+        <div>
+            <label>Priority:</label><br/>
+            <select name="priority">
+                {% for priority in priorities %}
+                {% if priority.priority == td.priority %}
+                <option value="{{ priority.priority }}" selected>{{ priority.priority }}</option>
+                {% else %}
+                <option value="{{ priority.priority }}">{{ priority.priority }}</option>
+                {% endif %}
+                {% endfor %}
+            </select><br/>
+        </div>
+        <div>
+            <label>Details:</label><br/>
+            <textarea style="border: 1px solid black;">{{ td.description }}</textarea><br/>
+        </div>
+        <div>
+            <label>Status:</label><br>
+            <select name="status">
+                {% for status in statuses %}
+                {% if status.status == td.status %}
+                <option value="{{ status.status}}" selected>{{ status.status }}</option>
+                {% else %}
+                <option value="{{ status.status }}">{{ status.status }}</option>
+                {% endif %}
+                {% endfor %}
+            </select><br/>
+        </div>
+    </div>
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-warning"><a href="{% url 'todos:update_todo' td.pk %}">Update</a></button>
+        <br>
+        <button class="btn btn-alert"><a href="{% url 'todos:delete_todo' td.pk %}">Delete</a></button>
+    </div>
+</div>
+{% endblock %}

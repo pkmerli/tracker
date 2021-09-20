@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div>
+        {% if itemset == 'tdpriority' %}
+            <caption>Priorities</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Sort Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:td_priority_detail' item.pk %}">{{ item.priority }}</a>
+                            </td>
+                            <td>{{ item.sort_order }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_td_priority' %}">Add Priority</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        {% elif itemset == 'tdstatus' %}
+            <caption>Statuses</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Sort Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:tdstatus_detail' item.pk %}">{{ item.status }}</a>
+                            </td>
+                            <td>{{ item.sort_order }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_tdstatus' %}">Add Status</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% elif itemset == 'bpriority' %}
+            <caption>Priorities</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Sort Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:bpriority_detail' item.pk %}">{{ item.priority }}</a>
+                            </td>
+                            <td>{{ item.sort_order }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_bpriority' %}">Add Priority</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% elif itemset == 'ltstatus' %}
+            <caption>Statuses</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Sort Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:ltstatus_detail' item.pk %}">{{ item.status }}</a>
+                            </td>
+                            <td>{{ item.sort_order }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_ltstatus' %}">Add Status</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% elif itemset == 'tstatus' %}
+            <caption>Statues</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Sort Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:t_status_detail' item.pk %}">{{ item.status }}</a>
+                            </td>
+                            <td>{{ item.sort_order }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_tstatus' %}">Add Status</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% elif itemset == 'trank' %}
+            <caption>Linked Task's Ranks</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ranks</th>
+                        <th>Sort Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:t_rank_detail' item.pk %}">{{ item.rank }}</a>
+                            </td>
+                            <td>{{ item.sort_order }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_trank' %}">Add Rank</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% elif itemset == 'ltcategory' %}
+            <caption>Categories</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:ltcategory_detail' item.pk %}">{{ item.category }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_ltcategory' %}">Add Priority</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% elif itemset == 'kbtype' %}
+            <caption>Types</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:kb_type_detail' item.pk %}">{{ item.type }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_kbtype' %}">Add Type</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <caption>Categories</caption>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'settings:bcategory_detail' item.pk %}">{{ item.category }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary"><a href="{% url 'settings:add_bcategory' %}">Add Category</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+            <div class="row">
+                <button class="btn btn-primary"><a href="{% url 'settings:settings' %}">Back</a></button>
+            </div>
+    </div>
+{% endblock %}

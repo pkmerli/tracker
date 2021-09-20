@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div>
+        <div class="btn-group btn-group-sm">
+        <a href="{% url 'issues:issues' %}"><button class="btn btn-primary">Back</button></a>
+        <a href="{% url 'issues:bug_attachments' bug.pk %}"><button class="btn btn-outline-primary">Attachments</button>
+        <a href="{% url 'issues:bug_entries' bug.pk %}" class="btn btn-outline-info btn-sm">Notes</a>
+        </div>
+        <div class="form-group">
+            {% csrf_token %}
+            <div>
+                <label>Summary:</label><br>
+                <input type="text" name="name" value="{{ bug.name }}"><br>
+            </div>
+            <div>
+                <label>Priority:</label><br>
+                <select name="priority">
+                    {% for priority in priorities %}
+                    {% if priority.priority == bug.priority %}
+                    <option value="{{ priority.priority }}" selected>{{ priority.priority }}</option>
+                    {% else %}
+                    <option value="{{ priority.priority }}">{{ priority.priority }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select><br>
+            </div>
+            <div>
+                <label>Description:</label><br>
+                <textarea style="border: 1px solid black;">{{ bug.description }}</textarea><br>
+            </div>
+            <div>
+                <label>Status</label><br>
+                <select name="status">
+                    {% for status in statuses %}
+                    {% if status.status == bug.status %}
+                    <option value="{{ status.status}}" selected>{{ status.status }}</option>
+                    {% else %}
+                    <option value="{{ status.status }}">{{ status.status }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select><br>
+            </div>
+            <div>
+                <label>Category</label><br>
+                <select name="category">
+                    {% for cat in categories %}
+                    {% if cat.category == bug.category %}
+                    <option value="{{ cat.category }}" selected>{{ cat.category }}</option>
+                    {% else %}
+                    <option value="{{ cat.category  }}">{{ cat.category  }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select><br>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group btn-group-sm">
+        <a href="{% url 'issues:update_bug' bug.pk %}"><button class="btn btn-warning">Update</button>
+        <br/>
+        <a href="{% url 'issues:delete_issue' bug.pk %}"><button class="btn btn-danger">Delete</button></a>
+    </div>
+</div>
+{% endblock %}

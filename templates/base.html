@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bug Tracker and To Do List App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="#" class="navbar-brand">ToDo's & Issues Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a href="{% url 'home' %}" class="nav-link">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'issues:issues' %}" class="nav-link" >Bug Tracker</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'todos:todo' %}" class="nav-link">ToDo's</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'linkedtask:linked_tasks' %}" class="nav-link">Linked Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'knowledgebase:kb_entries' %}" class="nav-link">Knowledge Base</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer style="text-align: center">
+        &copy; 2021 apps
+    </footer>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    {% if set == 'tdstatus' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:td_status' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_tdstatus' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Status: </label><br/>
+                {{ item.status }}
+            </div>
+            <div>
+                <label>Sort Order: </label><br/>
+                {{ item.sort_order }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:tdstatus_update' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:tdstatus_delete' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'tdpriority' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:td_priority' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_td_priority' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Priority: </label><br/>
+                {{ item.priority }}
+            </div>
+            <div>
+                <label>Sort Order: </label><br/>
+                {{ item.sort_order }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:td_priority_update' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:td_priority_delete' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'bstatus' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:bug_status' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_bstatus' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Status: </label><br/>
+                {{ item.status }}
+            </div>
+            <div>
+                <label>Sort Order: </label><br/>
+                {{ item.sort_order }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:bstatus_update' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:bstatus_delete' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'bpriority' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:bug_priority' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_bpriority' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Priority: </label><br/>
+                {{ item.priority }}
+            </div>
+            <div>
+                <label>Sort Order: </label><br/>
+                {{ item.sort_order }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:bpriority_update' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:bpriority_delete' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'ltstatus' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:lt_status' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_ltstatus' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Status: </label><br/>
+                {{ item.status }}
+            </div>
+            <div>
+                <label>Sort Order: </label><br/>
+                {{ item.sort_order }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:ltstatus_update' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:ltstatus_delete' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'tstatus' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:t_status' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_tstatus' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Status: </label><br/>
+                {{ item.status }}
+            </div>
+            <div>
+                <label>Sort Order: </label><br/>
+                {{ item.sort_order }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:update_tstatus' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:delete_tstatus' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'trank' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:t_rank' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_trank' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Rank: </label><br/>
+                {{ item.rank }}
+            </div>
+            <div>
+                <label>Sort Order: </label><br/>
+                {{ item.sort_order }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:update_trank' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:delete_trank' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'ltcategory' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:lt_category' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_ltcategory' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>Category: </label><br/>
+                {{ item.category }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:ltcategory_update' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:ltcategory_delete' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% elif set == 'kbtype' %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:kb_type' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_kbtype' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div class="container">
+            <div>
+                <label>KB Type: </label><br/>
+                {{ item.type }}
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'settings:update_kbtype' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:delete_kbtype' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <div class="row">
+            <a href="{% url 'settings:bug_category' %}"><button class="btn btn-primary">Back</button></a>
+            <a href="{% url 'settings:add_bcategory' %}"><button class="btn btn-primary">Add New</button></a>
+        </div>
+        <div>
+            <div class="container">
+                <div>
+                    <label>Category: </label><br/>
+                    {{ item.category }}
+                </div>
+            </div>
+        </div>
+         <div class="row">
+            <a href="{% url 'settings:bcategory_update' item.pk %}"><button class="btn btn-primary">Update</button></a>
+            <a href="{% url 'settings:bcategory_delete' item.pk %}"><button class="btn btn-primary">Delete</button></a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

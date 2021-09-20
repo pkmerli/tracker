@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-grip gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-outline-secondary btn-sm"><a href="{% url 'issues:bug_detail' entry_for__pk %}">Back</a></button>
+        <button class="btn btn-outline-info btn-sm"><a href="{% url 'issues:add_attached' entry_for__pk %}">Add Attachment</a></button>
+    </div>
+    <caption>{{ entry_for__name }} Attachments</caption>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Document</th>
+                <th>File</th>
+                <th>Uploaded At</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for att in attachments %}
+                <tr>
+                    <td>{{ att.file_name }}</td>
+                    <td>{{ att.file }}</td>
+                    <td>{{ att.uploaded_at }}</td>
+                    <td>
+                        <a href="{% url 'issues:attached_detail' entry_for__pk att.id %}"><button class="btn btn-warning btn-sm">View</button></a>
+                        <a href="{% url 'issues:delete_attached' entry_for__pk att.id %}"><button class="btn btn-warning btn-sm">Delete</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

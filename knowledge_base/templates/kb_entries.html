@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h3>KnowledgeBase Entries</h3>
+    <br/>
+    <div class="container-fluid">
+        <div class="row">
+            <a href="{% url 'home' %}" class='btn btn-secondary btn-sm pull-left'>Back</a>
+            <a href="{% url 'knowledgebase:add_kb' %}" class="btn btn-primary btn-sm pull-right">Add New KB</a>
+        </div>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>KB Title</th>
+                        <th>KB Type</th>
+                        <th>Created</th>
+                        <th>Last Updated</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for kb in kbs %}
+                        <tr>
+                            <td><a href="{% url 'knowledgebase:kb_detail' kb.pk %}">{{ kb.name }}</a></td>
+                            <td><a href="{% url 'knowledgebase:kb_detail' kb.pk %}">{{ kb.type }}</a></td>
+                            <td><a href="{% url 'knowledgebase:kb_detail' kb.pk %}">{{ kb.created_at }}</a></td>
+                            <td><a href="{% url 'knowledgebase:kb_detail' kb.pk %}">{{ kb.updated_at }}</a></td>
+                            <td>
+                                <button class="btn btn-warning btn-sm">
+                                    <a href="{% url 'knowledgebase:update_kb' kb.pk %}">Update</a>
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <a href="{% url 'knowledgebase:delete_kb' kb.pk %}">Delete</a>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <a href="{% url 'knowledgebase:kb_entries' %}" class="btn btn-secondary btn-sm pull-right">Back</a>
+        <a href="{% url 'knowledgebase:kb_attachments' kb.pk %}" class="btn btn-secondary btn-sm pull-left">See Attachments</a>
+        <div class="form-group">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-8 col-sm-6">
+                    <label>KB Title: </label><br/>
+                    <input type="text" name="name" value="{{ kb.name }}"><br/>
+                </div>
+                <div class="col-4 col-sm-6">
+                    <label>Type: </label><br/>
+                    <select name="type">
+                        {% for type in kb_type %}
+                        {% if type.type == kb.type %}
+                        <option value="{{ type.type }}" selected>{{ type.type }}</option>
+                        {% else %}
+                        <option value="{{ type.type }}">{{ type.type }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <label>Notes: </label><br/>
+                <textarea style="border: 1px solid black;">{{ kb.notes }}</textarea><br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="btn-group btn-group-sm">
+                <button class="btn btn-warning btn-sm"><a href="{% url 'knowledgebase:update_kb' kb.pk %}">Update</a></button>
+                <button class="btn btn-danger btn-sm"><a href="{% url 'knowledgebase:delete_kb' kb.pk %}">Delete</a></button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

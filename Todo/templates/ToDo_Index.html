@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>To Do List</h1>
+    <br/>
+    <div class='container-fluid'>
+        <div class="d-grip gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'todos:add_todo' %}" class="btn btn-primary btn-sm">Add New Issue</a>
+            <a href="{% url 'settings:settings' %}" class="btn btn-secondary btn-sm">Settings</a>
+        </div>
+        <caption>Your To Do List</caption>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Priority</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for td in todos %}
+                        <tr>
+                            <td>{{td.name}}</td>
+                            <td>{{td.priority}}</td>
+                            <td>{{td.description}}</td>
+                            <td>{{td.status}}</td>
+                            <td>
+                                <button class='btn btn-warning btn-sm'><a href="{% url 'todos:todo_detail' td.pk %}">View</a></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

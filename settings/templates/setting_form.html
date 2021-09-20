@@ -1,0 +1,12 @@
+{% block content %}
+
+<button class="btn btn-outline-primary"><a href="{% url 'settings:settings' %}">Back</a></button>
+
+<div style="background-color: #fafafa; justify-content: center;">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type='submit' class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock %}
