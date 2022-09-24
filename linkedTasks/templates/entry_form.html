@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <button class="btn btn-secondary btn-sm pull-left"><a href="{% url 'linkedtask:task_entries' pk %}">Back</a></button>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-control">
+                <label>Notes: </label><br/>
+                {{ forms.notes }}
+            </div>
+            <div class="form-control">
+                <label>Entry for: </label><br/>
+                <select name="entry_for">
+                    <option value="{{ obj }}" selected>{{ obj.name }}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

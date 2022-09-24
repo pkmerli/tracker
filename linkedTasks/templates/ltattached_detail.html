@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h3>{{ attach.attached_to.name }}'s Attachment</h3>
+        <div class="row">
+            <a href="{% url 'linkedtask:lt_attachments' pk %}" class="btn btn-outline-secondary btn-sm">Back</a>
+        </div>
+        <div class="row" style="background-color: #DCDCDC;">
+            <div>
+                <label>Document Name:  </label><br/>
+                <input type="text" name="name" value="{{ attach.file_name }}"><br/>
+            </div>
+            <br/>
+            <div>
+                <label>File: </label><br/>
+                <span>{{ attach.file }}</span>
+            </div>
+            <br/>
+            <div>
+                <label>Uploaded At: </label><br/>
+                <span>{{ attach.uploaded_at }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'linkedtask:update_attach' pk, attach.id %}" class="btn btn-warning btn-sm">Update</a>
+            <a href="{% url 'linkedtask:delete_attach' pk, attach.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </div>
+    </div>
+{% endblock %}

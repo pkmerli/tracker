@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-5 col-lg-6">
+                <h3> {{ linked.name }} Attachments</h3>
+            </div>
+            <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
+                <a href="{% url 'linkedtask:linked_task_detail' linked.pk %}" class="btn btn-secondary btn-sm">Back</a>
+                <a href="{% url 'linkedtask:add_attach' linked.pk %}" class="btn btn-secondary btn-sm">Add New Attachment</a>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Document</th>
+                        <th>File</th>
+                        <th>Uploaded At</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for att in attachments %}
+                        <tr>
+                            <td><a href="{% url 'linkedtask:attached_detail' linked.pk, att.id %}">{{ att.file_name }}</a></td>
+                            <td><a href="{% url 'linkedtask:attached_detail' linked.pk, att.id %}">{{ att.file }}</a></td>
+                            <td><a href="{% url 'linkedtask:attached_detail' linked.pk, att.id %}">{{ att.uploaded_at }}</a></td>
+                            <td>
+                                <a href="{% url 'linkedtask:update_attached' linked.pk, att.id %}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{% url 'linkedtask:delete_attached' linked.pk, att.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

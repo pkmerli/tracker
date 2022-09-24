@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <a href="{% url 'linkedtask:linked_tasks' %}" class="btn btn-secondary btn-sm">Back</a>
+</div>
+<div class="row">
+    <div class="col-8">
+        <span>{{ linked_list.title }}</span>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-2">
+        <a href="{% url 'linkedtask:add_task' linked_list.pk %}" class="btn btn-primary btn-sm">Add Task</a>
+        <button class="btn btn-secondary btn-sm"></button>
+    </div>
+</div>
+<div>
+    {% for task in tasks %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ task.name }}</h5>
+            <div>
+                <div class="col-md-4">
+                    <span>{{ task.rank }}</span><br/>
+                    <span>{{ task.status }}</span><br/>
+                </div>
+                <div class="col-md-4 offset-md-4">
+                    <textarea>{{ task.description }}</textarea>
+                    <div class="row">
+                        {{ task.updated_at }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

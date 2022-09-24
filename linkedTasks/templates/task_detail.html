@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-auto mr-auto">
+            <button class="btn btn-secondary btn-sm"><a href="{% url 'linkedtask:tasks' linked.pk %}">Back</a></button>
+        </div>
+        <div class="col-md4 ml-auto">
+            <button class="btn btn-warning btn-sm"><a href="{% url 'linkedtask:update_task' linked.pk %}">Update</a></button>
+        </div>
+    </div>
+    <div class="form-group">
+        {% csrf_token %}
+        <div class="row"
+            <div class="col-12 col-sm-6 col-md-8">
+                <label>Task: </label><br/>
+                <input type="text" name="name" value="{{ task.name }}"><br/>
+            </div>
+            <div class="col-6 col-md-4">
+                <label>Type: </label><br/>
+                <select name="type">
+                    {% for type in types %}
+                    {% if type == task.type %}
+                    <option value="{{ type }}" selected>{{ type }}</option>
+                    {% else %}
+                    <option value="{{ type }}">{{ type }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-3">
+                <label>Status: </label><br/>
+                <select name="status">
+                    {% for status in statuses %}
+                    {% if status.status == task.status %}
+                    <option value="{{ status.status }}" selected>{{ status.status }}</option>
+                    {% else %}
+                    <option value="{{ status.status }}">{{ status.status }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select><br/>
+            </div>
+            <div class="col-6 col-md-3">
+                <label>Rank: </label><br/>
+                <select name="rank">
+                    {% for rank in ranks %}
+                    {% if rank.rank == task.rank %}
+                    <option value="{{ rank.rank }}" selected>{{ rank.rank }}</option>
+                    {% else %}
+                    <option value="{{ rank.rank }}">{{ rank.rank }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select><br/>
+            </div>
+        </div>
+        <div>
+            <label>Details:</label><br/>
+            <textarea style="border: 1px solid black;">{{ task.description }}</textarea><br/>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <label>Linked To: </label>
+                <span>{{ linked.name }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto mr-auto">
+            <button class="btn btn-info btn-sm"><a href="{% url 'linkedtask:tasks' linked.pk %}">Back</a></button>
+        </div>
+        <div class="col-md4 ml-auto">
+            <button class="btn btn-warning btn-sm"><a href="{% url 'linkedtask:update_task' linked.pk %}">Update<a><button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto mr-auto">
+            <button class="btn btn-info btn-sm"><a href="{% url 'linkedtask:task_entries' linked.pk, task.pk %}">Entries</a></button>
+        </div>
+        <div class="col-md4 ml-auto">
+            <button class="btn btn-danger btn-sm"><a href="{% url 'linkedtask:delete_task' linked.pk, task.pk %}">Delete</a></button>
+        </div>
+    </div>
+</div>
+{% endblock %}

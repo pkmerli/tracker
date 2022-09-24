@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class='container-fluid'>
+    <a href="{% url 'settings:settings' %}" class="btn btn-secondary btn-sm">Settings</a>
+    <a href="{% url 'linkedtask:add_linked_task' %}" class="btn btn-primary btn-sm pull-right">Add New Linked List</a>
+    <br/>
+    <br/>
+    <caption>Linked Tasks Lists</caption>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Last Updated</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in lts %}
+            <tr>
+                <td>
+                    <a href="{% url 'linkedtask:linked_task_detail' link.pk %}">{{ link.title }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'linkedtask:linked_task_detail' link.pk %}">{{ link.category }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'linkedtask:linked_task_detail' link.pk %}">{{ link.status }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'linkedtask:linked_task_detail' link.pk %}">{{ link.created_at }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'linkedtask:linked_task_detail' link.pk %}">{{ link.updated_at}}</a>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a href="{% url 'linkedtask:update_linked_task' link.pk %}" class="btn btn-warning">Update</a>
+                        <a href="{% url 'linkedtask:delete_linked_task' link.pk %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

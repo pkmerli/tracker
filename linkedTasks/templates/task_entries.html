@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <a href="{% url 'linkedtask:tasks' %}" class="btn btn-outline-secondary btn-sm">Back</a>
+</div>
+<div class="row">
+    <div class="col-sm-5 col-md-6">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <label>Linked List: </label>
+                <span>{{ obj.linked_to }}</span>
+                <br/>
+                <label>Type: </label><br/>
+                <span>{{ obj.type }}</span><br/>
+                <br/>
+            </div>
+            <div class="col-12 col-md-8">
+                <span>{{ obj.name }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <label>Rank: </label><br/>
+                <span>{{ obj.rank }}</span><br/>
+                <label>Status: </label><br/>
+                <span>{{ obj.status }}</span><br/>
+            </div>
+            <div class="col-12 col-md-8">
+                <label>Description: </label><br/>
+                <textarea style="border: 1px solid black;">{{ obj.description }}</textarea><br/>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5 col-md-6">
+        <div class="row">
+            <div class="col-md-3 ml-md-auto">
+                <button class="btn btn-primary btn-sm"><a href="{% url 'linkedtask:add_entry' obj.id %}">Add Entry</a></button>
+            </div>
+        </div>
+        <caption>Entries</caption>
+        {% for note in notes %}
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-right">
+                <span>Last Updated: ></span><span>{{ note.updated_at }}</span>
+                <button class="btn btn-warning btn-sm"><a href="{% url 'linkedtask:update_entry' obj.id, note.pk %}">Update</a></button>
+            </div>
+            <div class="card-body">
+                <textarea style="border: 1px solid black;">{{ note.notes }}</textarea><br/>
+                <div class="row">
+                    <div class="col-auto mr-auto">
+                        <button class="btn btn-primary btn-sm"><a href="{% url 'linkedtask:delete_entry' obj.id, note.pk %}">Delete</a></button>
+                    </div>
+                    <div class="col-md-4 ml-auto">
+                        <p class="card-text">Created: </p><span>{{ note.created_at }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

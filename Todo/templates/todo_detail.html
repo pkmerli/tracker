@@ -1,7 +1,9 @@
+{% load static %}
+
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <button class="btn btn-primary btn-sm"><a href="{% url 'todos:todo' %}">Back</a></button>
+    <a href="{% url 'todos:todo' %}" class="btn btn-primary btn-sm">Back</a>
     <div class="form-group">
         {% csrf_token %}
         <div>
